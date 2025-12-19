@@ -6,7 +6,9 @@ const teamMembers = [
         role: "Full-Stack Developer",
         photo: "mohak.jpeg",
         skills: ["React", "Node.js", "MongoDB", "TypeScript", "AWS"],
-        linkedin: "https://www.linkedin.com/in/mohak-gupta-23336832b/"
+        linkedin: "https://www.linkedin.com/in/mohak-gupta-23336832b/",
+        github: "https://github.com/mohak898",
+        portfolio: "#"
     },
     {
         id: 2,
@@ -14,7 +16,9 @@ const teamMembers = [
         role: "UI/UX Designer",
         photo: "anshul.jpeg",
         skills: ["Figma", "Sketch", "Adobe XD", "UI Design", "Prototyping"],
-        linkedin: "https://www.linkedin.com/in/anshul-kumar-871854395?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        linkedin: "https://www.linkedin.com/in/anshul-kumar-871854395?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        github: "https://github.com/Anshul-Kumar35",
+        portfolio: "#"
     },
     {
         id: 3,
@@ -22,7 +26,9 @@ const teamMembers = [
         role: "Backend Developer",
         photo: "anurag.jpeg",
         skills: ["Python", "Django", "PostgreSQL", "Docker", "REST APIs"],
-        linkedin: "https://www.linkedin.com/in/anurag-kumar-b9b963383/"
+        linkedin: "https://www.linkedin.com/in/anurag-kumar-b9b963383/",
+        github: "https://github.com/anuragkr-14",
+        portfolio: "https://anurag-portfolio-blond.vercel.app/"
     },
     {
         id: 4,
@@ -30,8 +36,9 @@ const teamMembers = [
         role: "Mobile Developer",
         photo: "saket.jpeg",
         skills: ["Flutter", "React Native", "iOS", "Android", "Firebase"],
-        linkedin: "https://linkedin.com/in/saket-kumar-71b542371"
-        
+        linkedin: "https://linkedin.com/in/saket-kumar-71b542371",
+        github: "https://github.com/SaketKumar0608",
+        portfolio: "#"
     },
     {
         id: 5,
@@ -39,7 +46,9 @@ const teamMembers = [
         role: "Machine Learning Engineer",
         photo: "keshav.jpg",
         skills: ["Python", "TensorFlow", "PyTorch", "Computer Vision", "NLP"],
-        linkedin: "https://www.linkedin.com/in/keshav-agrawal-39a39431a/"
+        linkedin: "https://www.linkedin.com/in/keshav-agrawal-39a39431a/",
+        github: "https://github.com/keshav-kr-agrawal",
+        portfolio: "https://keshav-portfolio-vert.vercel.app/"
     }
 ];
 
@@ -158,9 +167,17 @@ function renderTeamMembers() {
                 <div class="skills">
                     ${member.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
                 </div>
-                <a href="${member.linkedin}" class="linkedin-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-linkedin"></i> Connect on LinkedIn
-                </a>
+                <div class="social-links">
+                    <a href="${member.linkedin}" class="linkedin-link" target="_blank" rel="noopener noreferrer" aria-label="${member.name} on LinkedIn" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="${member.github || '#'}" class="github-link" target="_blank" rel="noopener noreferrer" aria-label="${member.name} on GitHub" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="${member.portfolio || '#'}" class="portfolio-link ${(!member.portfolio || member.portfolio === '#') ? 'coming-soon' : ''}" target="_blank" rel="noopener noreferrer" aria-label="${member.name} portfolio" title="Portfolio">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
             </div>
         </div>
     `).join('');
@@ -221,21 +238,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
     });
 
-    document.querySelectorAll('.project-links a').forEach(link => {
+    // Helper to attach coming-soon behavior to placeholder links, ignoring nav anchors
+    function attachComingSoonHandler(link, deriveTitleFn) {
         const href = link.getAttribute('href') || '';
-        const isPlaceholder = href === '#' || href.trim() === '' || href.includes('example.com') || href.includes('VIDEO_ID');
-
-        if (isPlaceholder) {
+        const isPlaceholder = href === '#' || href.trim() === '' || href.includes('example.com') || href.includes('VIDEO_ID') || href === 'javascript:void(0)';
+        const isNavAnchor = link.closest('.nav-links') !== null; // skip nav menu anchors
+        if (isPlaceholder && !isNavAnchor) {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                // find the project title from nearest .project
-                const project = link.closest('.project');
-                const title = project ? (project.querySelector('h3') ? project.querySelector('h3').textContent.trim() : 'Project') : 'Project';
+                const title = deriveTitleFn ? deriveTitleFn(link) : (link.getAttribute('title') || link.textContent.trim() || 'Link');
                 // derive subtopic from class or text
                 let sub = 'Link';
                 if (link.classList.contains('video-link')) sub = 'Video';
                 else if (link.classList.contains('web-link')) sub = 'Webpage';
                 else if (link.classList.contains('github-link')) sub = 'GitHub';
+                else if (link.classList.contains('portfolio-link')) sub = 'Portfolio';
                 else sub = link.textContent.trim();
 
                 openModal(title, sub);
@@ -245,6 +262,27 @@ document.addEventListener('DOMContentLoaded', () => {
             link.style.opacity = '0.85';
             link.style.cursor = 'pointer';
         }
+    }
+
+    // Attach to project links (existing behavior)
+    document.querySelectorAll('.project-links a').forEach(link => {
+        attachComingSoonHandler(link, (l) => {
+            const project = l.closest('.project');
+            return project ? (project.querySelector('h3') ? project.querySelector('h3').textContent.trim() : 'Project') : 'Project';
+        });
+    });
+
+    // Attach to portfolio links and other social/footer links that are placeholders
+    document.querySelectorAll('.portfolio-link, .social-links a, .footer-links a').forEach(link => {
+        attachComingSoonHandler(link, (l) => {
+            // find nearest member card or footer context for title
+            const member = l.closest('.member-card');
+            if (member) {
+                const nameEl = member.querySelector('h3');
+                return nameEl ? `${nameEl.textContent.trim()} — Portfolio` : 'Portfolio';
+            }
+            return link.getAttribute('title') || link.textContent.trim() || 'Link';
+        });
     });
 });
 
