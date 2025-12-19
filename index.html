@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team MAASK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="maask.jpg" alt="MAASK Logo" class="logo-icon">
+                <span>MAASK</span>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="theme-item"><div class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </div></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-image">
+                    <img src="group.jpeg" alt="Team MAASK Group Photo">
+                    <div class="hero-title">MAASK</div>
+                </div>
+                <p class="tagline"><big>Team MAASK is a multi-disciplinary group passionate about technology, creativity, and problem‑solving.</big></p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About Us</h2>
+                <div class="about-content">
+                    <p><big>Team MAASK is a dynamic group of five talented individuals who share a common passion for technology and innovation. Formed with the vision of creating impactful solutions, our team brings together diverse skills in software development, design, and problem-solving.</big></p>
+                    <p><big>Our mission is to leverage technology to solve real-world problems while maintaining the highest standards of quality and user experience. We believe in continuous learning, collaboration, and pushing the boundaries of what's possible.</big></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="team">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <div class="team-grid" id="teamMembers">
+                    <!-- Team members will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Our Projects</h2>
+                <div class="project" id="fluxglove">
+                    <h3>Fluxglove</h3>
+                    <div class="project-row">
+                        <div class="project-image">
+                            <img src="glove.jpeg" alt="Fluxglove Project Image">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-links">
+                                <a href="https://github.com/keshav-kr-agrawal/FLUXGLOVE" class="github-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_ID" class="video-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-play-circle"></i> Video</a>
+                                <a href="https://fluxglove.vercel.app/" class="web-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Webpage</a>
+                            </div>
+                            <p class="project-description"><big>We built FluxGlove, a custom-fabricated VR data glove and headset system designed to challenge the $3,500 Apple Vision Pro. Our ambition was to democratize spatial computing for under $60. We architected a full hardware stack from scratch—integrating flex sensors for 1:1 finger tracking and dual IMUs for 6DoF head/hand tracking. Despite critical hardware failures, I engineered a "Tethered VR" solution that processed analog inputs into digital HID commands with zero latency. The project secured a Top 12 finish (out of 290) and proved that accessibility doesn't require compromising on immersion.</big></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project" id="ey-techathon">
+                    <h3>VerifyMed AI</h3>
+                    <div class="project-row">
+                        <div class="project-image">
+                            <img src="ey techathon.jpeg" alt="EY Techathon Project Image">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-links">
+                                <a href="#" class="github-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="https://drive.google.com/drive/folders/1eJP-jzgnV6LLRV1Ni7MR2QsoLyfzRWCn" class="video-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-play-circle"></i> Video</a>
+                                <a href="#" class="web-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Webpage</a>
+                            </div>
+                            <p class="project-description"><big>An Agentic AI solution to automate healthcare provider data validation, targeting the elimination of the 540-day correction gap.</big></p>
+                            <ul class="project-bullets">
+                                <li><big>Developed the “Automated Correction Loop” strategy to prevent critical system failures caused by outdated data</big></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Team MAASK</div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#team">Team</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#">GitHub</a></li>
+                            <li><a href="https://apps.microsoft.com/detail/9wzdncrfj4q7?hl=en-US&gl=US">LinkedIn</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Team MAASK. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <!-- Coming Soon Modal -->
+    <div id="comingSoonModal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" aria-label="Close">×</button>
+            <div class="modal-icon">⚗️</div>
+            <h3 id="modalTitle" class="modal-title">Project</h3>
+            <p class="modal-subtopic">Video</p>
+            <p class="modal-text">Coming Soon</p>
+            <button class="modal-action btn">Got it!</button>
+        </div>
+    </div>
+</body>
+</html>
