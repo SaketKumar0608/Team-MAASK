@@ -371,17 +371,34 @@ img {
     border: 1px solid rgba(255, 0, 0, 0.4);
 }
 
-.linkedin-link {
-    display: inline-flex;
-    align-items: center;
+.social-links {
+    display: flex;
+    gap: 12px;
     margin-top: 15px;
-    color: #0A66C2;
-    font-weight: 500;
 }
 
-.linkedin-link i {
-    margin-right: 8px;
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    color: var(--member-box-text);
+    font-weight: 500;
+    transition: var(--transition);
 }
+
+.social-links a:hover {
+    transform: translateY(-3px);
+    opacity: 0.95;
+}
+
+.linkedin-link { color: #0A66C2; }
+.github-link { color: #111; }
+.portfolio-link { color: var(--link); }
+
+.social-links a i { margin-right: 6px; }
 
 /* Projects Section */
 .projects {
