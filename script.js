@@ -34,7 +34,7 @@ const teamMembers = [
         id: 4,
         name: "Saket Kumar",
         role: "Mobile Developer",
-        photo: "saket.jpeg",
+        photo: "Saket.jpeg",
         skills: ["Flutter", "React Native", "iOS", "Android", "Firebase"],
         linkedin: "https://linkedin.com/in/saket-kumar-71b542371",
         github: "https://github.com/SaketKumar0608",
